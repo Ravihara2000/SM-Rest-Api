@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserResponse> getAll() {
         List<User> users=userRepository.findAll();
-        return UserToResponse(users);
+        return users.stream().map(user -> modelMapper.map(user, UserResponse.class)).collect(Collectors.toList());
     }
 
     @Override
@@ -43,10 +43,7 @@ public class UserServiceImpl implements UserService {
     public User getById(int userId) {
         return userRepository.findById(userId).get();
     }
-
-    private List<UserResponse> UserToResponse(List<User> users) {
-        return users.stream().map(user -> modelMapper.map(user, UserResponse.class)).collect(Collectors.toList());
-    }
+    
 
 
 

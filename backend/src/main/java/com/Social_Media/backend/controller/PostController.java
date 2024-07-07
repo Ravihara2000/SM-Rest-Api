@@ -1,12 +1,15 @@
 package com.Social_Media.backend.controller;
 
 import com.Social_Media.backend.dto.request.PostAddRequest;
+import com.Social_Media.backend.dto.response.post.PostGetResponse;
 import com.Social_Media.backend.service.PostService;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -26,5 +29,10 @@ public class PostController {
         postService.delete(postId);
         return new ResponseEntity<>("Deleted",HttpStatus.OK);
     }
+
+/*    @GetMapping("/get-all")
+    public ResponseEntity<List<PostGetResponse>>getAll(){
+        return new ResponseEntity<>(postService.getAll(),HttpStatus.OK);
+    }*/
 
 }

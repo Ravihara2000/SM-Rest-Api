@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collector;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -13,6 +15,7 @@ public class UserResponse {
     private int id;
     private String name;
     private String email;
+
 
 /*    private List<UserFollowResponse> followers;
     private List<UserFollowingResponse> following;*/
