@@ -8,10 +8,10 @@ import java.util.List;
 
 @Service
 public interface PostService {
-    int add(PostAddRequest postAddRequest);
+    String add(PostAddRequest postAddRequest);
 
     void delete(int postId);
 
 
-    /*List<PostGetResponse> getAll();*/
+    List<PostGetResponse> getAll();
 }

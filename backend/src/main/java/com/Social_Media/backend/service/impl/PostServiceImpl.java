@@ -2,6 +2,7 @@ package com.Social_Media.backend.service.impl;
 
 import com.Social_Media.backend.dto.request.PostAddRequest;
 import com.Social_Media.backend.dto.response.post.PostGetResponse;
+import com.Social_Media.backend.dto.response.user.UserResponse;
 import com.Social_Media.backend.entity.Post;
 import com.Social_Media.backend.entity.PostImage;
 import com.Social_Media.backend.repository.PostRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -21,10 +23,10 @@ public class PostServiceImpl implements PostService {
     private PostRepository postRepository;
 
     @Override
-    public int add(PostAddRequest postAddRequest) {
+    public String add(PostAddRequest postAddRequest) {
         Post post=modelMapper.map(postAddRequest,Post.class);
         postRepository.save(post);
-        return post.getId();
+        return "Post Added";
     }
 
     @Override
@@ -40,9 +42,9 @@ public class PostServiceImpl implements PostService {
         }
     }
 
-/*    @Override
+    @Override
     public List<PostGetResponse> getAll() {
         List<Post> posts = postRepository.findAll();
-        //return modelMapper.map(List<>);
-    }*/
+        return posts.stream().map(post -> modelMapper.map(post, PostGetResponse.class)).collect(Collectors.toList());
+    }
 }

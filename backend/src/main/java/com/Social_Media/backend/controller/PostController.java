@@ -19,8 +19,8 @@ public class PostController {
     private PostService postService;
 
     @PostMapping("/add")
-    public ResponseEntity<Integer> addPost(@RequestBody PostAddRequest postAddRequest){
-        int postId = postService.add(postAddRequest);
+    public ResponseEntity<String> addPost(@RequestBody PostAddRequest postAddRequest){
+        String postId = postService.add(postAddRequest);
         return new ResponseEntity<>(postId, HttpStatus.CREATED);
     }
 
@@ -30,9 +30,9 @@ public class PostController {
         return new ResponseEntity<>("Deleted",HttpStatus.OK);
     }
 
-/*    @GetMapping("/get-all")
+    @GetMapping("/get-all")
     public ResponseEntity<List<PostGetResponse>>getAll(){
         return new ResponseEntity<>(postService.getAll(),HttpStatus.OK);
-    }*/
+    }
 
 }

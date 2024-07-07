@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     public User getById(int userId) {
         return userRepository.findById(userId).get();
     }
-    
+
 
 
 
