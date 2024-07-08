@@ -3,7 +3,6 @@ package com.Social_Media.backend.controller;
 import com.Social_Media.backend.dto.request.PostAddRequest;
 import com.Social_Media.backend.dto.response.post.PostGetResponse;
 import com.Social_Media.backend.service.PostService;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +37,11 @@ public class PostController {
     @GetMapping("/getbyid/{postId}")
     public ResponseEntity<PostGetResponse> getPostById(@PathVariable(value = "postId") int postId){
         return new ResponseEntity<>(postService.getPostById(postId),HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllPostByUser/{userId}")
+    public ResponseEntity<List<PostGetResponse>> getAllPostByUser(@PathVariable(value = "userId") int userId){
+        return new ResponseEntity<>(postService.getAllPostByUser(userId),HttpStatus.OK);
     }
 
 }

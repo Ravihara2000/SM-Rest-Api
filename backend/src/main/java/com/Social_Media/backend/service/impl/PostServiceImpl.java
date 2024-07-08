@@ -51,4 +51,11 @@ public class PostServiceImpl implements PostService {
         Post post=postRepository.findById(postId).orElse(null);
         return modelMapper.map(post,PostGetResponse.class);
     }
+
+    @Override
+    public List<PostGetResponse> getAllPostByUser(int userId) {
+        List<Post> posts=postRepository.findAllByUserId(userId);
+        return posts.stream().map(post -> modelMapper.map(post, PostGetResponse.class)).collect(Collectors.toList());
+
+    }
 }
