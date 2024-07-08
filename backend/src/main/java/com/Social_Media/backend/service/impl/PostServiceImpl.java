@@ -2,9 +2,7 @@ package com.Social_Media.backend.service.impl;
 
 import com.Social_Media.backend.dto.request.PostAddRequest;
 import com.Social_Media.backend.dto.response.post.PostGetResponse;
-import com.Social_Media.backend.dto.response.user.UserResponse;
 import com.Social_Media.backend.entity.Post;
-import com.Social_Media.backend.entity.PostImage;
 import com.Social_Media.backend.repository.PostRepository;
 import com.Social_Media.backend.service.PostService;
 import org.modelmapper.ModelMapper;
@@ -46,5 +44,11 @@ public class PostServiceImpl implements PostService {
     public List<PostGetResponse> getAll() {
         List<Post> posts = postRepository.findAll();
         return posts.stream().map(post -> modelMapper.map(post, PostGetResponse.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public PostGetResponse getPostById(int postId) {
+        Post post=postRepository.findById(postId).orElse(null);
+        return modelMapper.map(post,PostGetResponse.class);
     }
 }

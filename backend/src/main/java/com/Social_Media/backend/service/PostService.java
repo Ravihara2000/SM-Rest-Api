@@ -14,4 +14,7 @@ public interface PostService {
 
 
     List<PostGetResponse> getAll();
+
+
+    PostGetResponse getPostById(int postId);
 }
