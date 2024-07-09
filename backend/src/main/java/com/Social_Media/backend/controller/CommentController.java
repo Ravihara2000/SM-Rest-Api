@@ -25,4 +25,9 @@ public class CommentController {
         CommentAddRequest commentAddRequest1=modelMapper.map(comment,CommentAddRequest.class);
         return ResponseEntity.ok(commentAddRequest1);
     }
+    @DeleteMapping("/delete")
+    private ResponseEntity<String> deleteComment(@RequestParam int id){
+        commentService.deleteComment(id);
+        return new ResponseEntity<>("Deleted",HttpStatus.OK);
+    }
 }
