@@ -56,4 +56,10 @@ public class CommentServiceImpl implements CommentService {
         List<Comment> comments=commentRepository.findAllByUserId(userId);
         return comments.stream().map(comment -> modelMapper.map(comment,CommentGetResponse.class)).collect(Collectors.toList());
     }
+
+    @Override
+    public List<CommentGetResponse> getAllCommentByPost(int postId) {
+        List<Comment> comments=commentRepository.findAllByPostId(postId);
+        return comments.stream().map(comment -> modelMapper.map(comment,CommentGetResponse.class)).collect(Collectors.toList());
+    }
 }

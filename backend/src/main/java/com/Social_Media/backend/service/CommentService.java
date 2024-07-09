@@ -19,4 +19,7 @@ public interface CommentService {
 
 
     List<CommentGetResponse> getAllCommentByUser(int userId);
+
+
+    List<CommentGetResponse> getAllCommentByPost(int postId);
 }

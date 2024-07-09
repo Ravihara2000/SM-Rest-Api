@@ -43,5 +43,9 @@ public class CommentController {
     public ResponseEntity<List<CommentGetResponse>>getAllCommentByUser(@PathVariable int userId){
         return new ResponseEntity<>(commentService.getAllCommentByUser(userId),HttpStatus.OK);
     }
+    @GetMapping("/get-all-by-post/{postId}")
+    public ResponseEntity<List<CommentGetResponse>>getAllCommentByPost(@PathVariable int postId){
+        return new ResponseEntity<>(commentService.getAllCommentByPost(postId),HttpStatus.OK);
+    }
 
 }
