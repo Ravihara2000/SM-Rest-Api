@@ -1,6 +1,6 @@
 package com.Social_Media.backend.service.impl;
 
-import com.Social_Media.backend.dto.request.CommentAddRequest;
+import com.Social_Media.backend.dto.response.comment.CommentGetResponse;
 import com.Social_Media.backend.entity.Comment;
 import com.Social_Media.backend.entity.Post;
 import com.Social_Media.backend.entity.User;
@@ -12,6 +12,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CommentServiceImpl implements CommentService {
     @Autowired
@@ -22,6 +25,8 @@ public class CommentServiceImpl implements CommentService {
 
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private ModelMapper modelMapper;
 
 
     @Override
@@ -38,5 +43,17 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void deleteComment(int id) {
         commentRepository.deleteById(id);
+    }
+
+    @Override
+    public List<CommentGetResponse> getAllComment() {
+        List<Comment> comments=commentRepository.findAll();
+        return comments.stream().map(comment -> modelMapper.map(comment,CommentGetResponse.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CommentGetResponse> getAllCommentByUser(int userId) {
+        List<Comment> comments=commentRepository.findAllByUserId(userId);
+        return comments.stream().map(comment -> modelMapper.map(comment,CommentGetResponse.class)).collect(Collectors.toList());
     }
 }
