@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public interface PostImageService {
@@ -12,4 +13,6 @@ public interface PostImageService {
     PostImageResponse upload(MultipartFile file, int postId) throws IOException;
 
     byte[] download(int postId);
+
+    List<byte[]> getAllImages();
 }

@@ -39,7 +39,6 @@ public class PostServiceImpl implements PostService {
             System.out.println(e);
         }
     }
-
     @Override
     public List<PostGetResponse> getAll() {
         List<Post> posts = postRepository.findAll();

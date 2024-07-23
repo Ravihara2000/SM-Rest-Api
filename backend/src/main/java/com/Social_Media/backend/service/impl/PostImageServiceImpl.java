@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -47,4 +49,16 @@ public class PostImageServiceImpl implements PostImageService {
 
     }
 
+    @Override
+    public List<byte[]> getAllImages() {
+        List<PostImage> postImages = postImageRepository.findAll();
+        List<byte[]> images = new ArrayList<>();
+
+        for (PostImage postImage : postImages) {
+            byte[] decompressedImage = ImageUtils.decompressImage(postImage.getData());
+            images.add(decompressedImage);
+        }
+
+        return images;
+    }
 }

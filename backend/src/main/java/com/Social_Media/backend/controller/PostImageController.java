@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/vi/postimages")
+@RequestMapping("/api/v1/postimages")
 public class PostImageController {
     @Autowired
     private PostImageService postImageService;
@@ -34,6 +35,14 @@ public class PostImageController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 
     }
+
+    @GetMapping("/get-all")
+    public ResponseEntity<List<byte[]>> getAllImage(){
+        List<byte[]> images = postImageService.getAllImages();
+        return ResponseEntity.status(HttpStatus.OK).body(images);
+
+    }
+
 
 
 
